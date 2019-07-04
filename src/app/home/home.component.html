@@ -1,1 +1,42 @@
-<p>home works!</p>
+<div class="card card-width text-center">
+
+    <!-- ============== ANGULAR IMAGE ================== -->
+    <div class="card-header">
+        <app-angular-image></app-angular-image>
+    </div>
+
+    <!-- ================== FORM ================== -->
+    <div class="card-body">
+        <form >
+            <!-- LICENSE PLATE -->
+            <div class="form-group">
+                <label for="inputLicensePlate">License Plate</label>
+                <input type="license-plate" class="form-control" name="inputLicensePlate" id="inputLicensePlate"
+                    aria-describedby="licensePlate" placeholder="Enter license plate">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+
+            <!-- DATE -->
+            <div class="form-group">
+                <label for="inputDate">Date</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                        #d="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIME -->
+            <div class="form-group">
+                <label for="inputTIme">Time</label>
+                <input type="time" class="form-control" name="inputTIme" id="inputTIme" placeholder="HH:mm">
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

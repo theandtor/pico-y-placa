@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  model: NgbDateStruct;
+  date: {year: number, month: number};
+  constructor(private calendar: NgbCalendar) {
+  }
 
-  constructor() { }
-
+  selectToday() {
+    this.model = this.calendar.getToday();
+  }
   ngOnInit() {
   }
 

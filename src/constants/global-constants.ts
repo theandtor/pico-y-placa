@@ -8,3 +8,7 @@ export const LIST_OF_LICESE_PLATE_END_DIGIT_ALLOWED_PER_DAY = {
     SATURDAY: [],
     SUNDAY: []
 }
+
+
+// ANGULAR IMAGE
+export const WIDTH_IMAGE = 200;
