@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AngularImageComponent } from './home/angular-image/angular-image.component';
 
+import { ReactiveFormsModule  } from '@angular/forms'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { AngularImageComponent } from './home/angular-image/angular-image.compon
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

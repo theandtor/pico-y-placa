@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,13 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number};
-  constructor(private calendar: NgbCalendar) {
+
+  userLicensePlateForm = this.fb.group({
+    licensePlate: ['Homero Simpson', Validators.required ],
+    date: ['', Validators.required],
+    time: ['', Validators.required]
+ });
+  constructor(private calendar: NgbCalendar, private fb: FormBuilder) {
   }
 
   selectToday() {
@@ -17,5 +24,9 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmitUserLicensePlate(formValue) {
+    console.log(this.userLicensePlateForm);
+  }
+
 
 }

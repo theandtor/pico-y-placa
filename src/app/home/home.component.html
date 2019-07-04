@@ -7,36 +7,51 @@
 
     <!-- ================== FORM ================== -->
     <div class="card-body">
-        <form >
+        <form [formGroup]="userLicensePlateForm" (ngSubmit)="onSubmitUserLicensePlate(userLicensePlateForm.value)">
             <!-- LICENSE PLATE -->
-            <div class="form-group">
+            <div class=" form-group">
                 <label for="inputLicensePlate">License Plate</label>
-                <input type="license-plate" class="form-control" name="inputLicensePlate" id="inputLicensePlate"
-                    aria-describedby="licensePlate" placeholder="Enter license plate">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+                <input type="license-plate" class="form-control" formControlName="licensePlate" name="inputLicensePlate"
+                    id="inputLicensePlate" aria-describedby="licensePlate" placeholder="Enter license plate" required>
+                <small id="licensePlateRequired" class="form-text text-danger"
+                    *ngIf="userLicensePlateForm.get('licensePlate').hasError('required') && (userLicensePlateForm.get('licensePlate').dirty || userLicensePlateForm.get('licensePlate').touched)">
+                    Required field
+                </small>
             </div>
-
             <!-- DATE -->
             <div class="form-group">
                 <label for="inputDate">Date</label>
                 <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-                        #d="ngbDatepicker">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="date" ngbDatepicker
+                        #d="ngbDatepicker" required>
                     <div class="input-group-append">
                         <button class="btn btn-secondary calendar" (click)="d.toggle()" type="button"></button>
                     </div>
                 </div>
+                <small id="dateRequired" class="form-text text-danger"
+                    *ngIf="userLicensePlateForm.get('date').hasError('required') && (userLicensePlateForm.get('date').dirty || userLicensePlateForm.get('date').touched)">
+                    Required field
+                </small>
+                <small id="dateInvalid" class="form-text text-danger" *ngIf="userLicensePlateForm.get('date').hasError('ngbDate')
+                     && !userLicensePlateForm.get('date').hasError('required')
+                     && (userLicensePlateForm.get('date').dirty || userLicensePlateForm.get('date').touched)">
+                    Invalid field
+                </small>
             </div>
 
             <!-- TIME -->
             <div class="form-group">
                 <label for="inputTIme">Time</label>
-                <input type="time" class="form-control" name="inputTIme" id="inputTIme" placeholder="HH:mm">
+                <input type="time" class="form-control" formControlName="time" name="inputTIme" id="inputTIme"
+                    placeholder="HH:mm" required>
+                <small id="timeRequired" class="form-text text-danger"
+                    *ngIf="userLicensePlateForm.get('time').hasError('required') && (userLicensePlateForm.get('time').dirty || userLicensePlateForm.get('time').touched)">
+                    Required field
+                </small>
             </div>
 
             <!-- SUBMIT BUTTON -->
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]="userLicensePlateForm.status.toUpperCase() === 'INVALID'" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
