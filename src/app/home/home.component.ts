@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
 
   userLicensePlateForm: FormGroup;
 
+  carhasPermission : boolean; // variable changes if the car has permission or not
+
   constructor(private calendar: NgbCalendar, private fb: FormBuilder, protected calculatePermissionsService: CalculatePermissionsService) {
     /*
       FORM BUILDER FOR VALIDATOS
@@ -23,6 +25,9 @@ export class HomeComponent implements OnInit {
       date: ['', Validators.required],
       time: ['', Validators.required]
     });
+
+    // default when the app starts
+    this.carhasPermission = null;
   }
 
   get PATTERN_LICENSE_PLATE() {
@@ -42,7 +47,7 @@ export class HomeComponent implements OnInit {
     IF THE USER SUBMIT THE FORM
   */
   onSubmitUserLicensePlate(formValueObject: ILicensePlate) {
-    this.calculatePermissionsService.getPermission(formValueObject);
+    this.carhasPermission = this.calculatePermissionsService.getPermission(formValueObject);
   }
 
 
