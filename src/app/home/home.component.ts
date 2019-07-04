@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { PATTERN_LICENSE_PLATE } from 'src/constants/global-constants';
+import { CalculatePermissionsService } from 'src/services/calculate-permissions/calculate-permissions.service';
+import { ILicensePlate } from 'src/model/license-plate-form';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   userLicensePlateForm: FormGroup;
 
-  constructor(private calendar: NgbCalendar, private fb: FormBuilder) {
+  constructor(private calendar: NgbCalendar, private fb: FormBuilder, protected calculatePermissionsService: CalculatePermissionsService) {
     /*
       FORM BUILDER FOR VALIDATOS
     */
@@ -39,7 +41,8 @@ export class HomeComponent implements OnInit {
   /*
     IF THE USER SUBMIT THE FORM
   */
-  onSubmitUserLicensePlate(formValueObject) {
+  onSubmitUserLicensePlate(formValueObject: ILicensePlate) {
+    this.calculatePermissionsService.getPermission(formValueObject);
   }
 
 
