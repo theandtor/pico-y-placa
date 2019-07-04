@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { PATTERN_LICENSE_PLATE } from 'src/constants/global-constants';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +10,22 @@ import { Validators, FormBuilder } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  /*
-    FORM BUILDER FOR VALIDATOS
-  */
-  userLicensePlateForm = this.fb.group({
-    licensePlate: ['', Validators.required],
-    date: ['', Validators.required],
-    time: ['', Validators.required]
-  });
+  userLicensePlateForm: FormGroup;
+
   constructor(private calendar: NgbCalendar, private fb: FormBuilder) {
+    /*
+      FORM BUILDER FOR VALIDATOS
+    */
+    this.userLicensePlateForm = this.fb.group({
+      licensePlate: ['', [Validators.required, Validators.pattern(PATTERN_LICENSE_PLATE)]],
+      date: ['', Validators.required],
+      time: ['', Validators.required]
+    });
   }
 
+  get PATTERN_LICENSE_PLATE() {
+    return PATTERN_LICENSE_PLATE;
+  }
   /*
     SET BY DEFAULT DAY SELECTED AS TODAY
   */
@@ -33,8 +39,7 @@ export class HomeComponent implements OnInit {
   /*
     IF THE USER SUBMIT THE FORM
   */
-  onSubmitUserLicensePlate(formValue) {
-    console.log(this.userLicensePlateForm);
+  onSubmitUserLicensePlate(formValueObject) {
   }
 
 

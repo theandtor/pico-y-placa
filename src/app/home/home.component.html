@@ -12,10 +12,15 @@
             <div class=" form-group">
                 <label for="inputLicensePlate">License Plate</label>
                 <input type="license-plate" class="form-control" formControlName="licensePlate" name="inputLicensePlate"
-                    id="inputLicensePlate" aria-describedby="licensePlate" placeholder="Enter license plate" required>
+                    [pattern]="PATTERN_LICENSE_PLATE" id="inputLicensePlate"
+                    aria-describedby="licensePlate" placeholder="Enter license plate" required>
                 <small id="licensePlateRequired" class="form-text text-danger"
                     *ngIf="userLicensePlateForm.get('licensePlate').hasError('required') && (userLicensePlateForm.get('licensePlate').dirty || userLicensePlateForm.get('licensePlate').touched)">
                     Required field
+                </small>
+                <small id="licensePlateRequired" class="form-text text-danger"
+                    *ngIf="userLicensePlateForm.get('licensePlate').hasError('pattern') && (userLicensePlateForm.get('licensePlate').dirty || userLicensePlateForm.get('licensePlate').touched)">
+                    Invalid field (Ex. ABC-2222)
                 </small>
             </div>
             <!-- DATE -->
@@ -51,7 +56,8 @@
             </div>
 
             <!-- SUBMIT BUTTON -->
-            <button type="submit" [disabled]="userLicensePlateForm.status.toUpperCase() === 'INVALID'" class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]="userLicensePlateForm.status.toUpperCase() === 'INVALID'"
+                class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>

@@ -12,3 +12,6 @@ export const LIST_OF_LICESE_PLATE_END_DIGIT_ALLOWED_PER_DAY = {
 
 // ANGULAR IMAGE
 export const WIDTH_IMAGE = 200;
+
+// PATTERN
+export const PATTERN_LICENSE_PLATE = '^[A-Za-z]{3}-?[0-9]{3,4}$';
